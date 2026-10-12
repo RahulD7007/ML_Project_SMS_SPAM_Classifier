@@ -1,0 +1,29 @@
+stages:
+  make_dataset:
+    cmd: python src/data/make_dataset.py data/raw/spam.csv
+      data/processed/spam_clean.csv
+    deps:
+      - data/raw/spam.csv
+      - src/data/make_dataset.py
+
+  build_features:
+    cmd: python src/features/features.py data/processed/spam_clean.csv models/
+    deps:
+      - src/features/features.py
+      - data/processed/spam_clean.csv
+    params:
+      - build_features.max_features
+      - build_features.remove_stopwords
+    outs:
+      - models/
+
+  train_model:
+    cmd: python src/models/train_model.py models/ model/model.pkl
+    deps:
+      - src/models/train_model.py
+      - models/X_vec.pkl
+      - models/y.pkl
+    params:
+      - train_model
+    outs:
+      - model/model.pkl

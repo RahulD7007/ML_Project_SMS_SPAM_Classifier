@@ -1,0 +1,64 @@
+schema: '2.0'
+stages:
+  make_dataset:
+    cmd: python src/data/make_dataset.py data/raw/spam.csv 
+      data/processed/spam_clean.csv
+    deps:
+    - path: data/raw/spam.csv
+      hash: md5
+      md5: 008dcf9ca6aab621d3b3831db6815867
+      size: 503663
+    - path: src/data/make_dataset.py
+      hash: md5
+      md5: d9b535a541fa3748d3148ef257a640c9
+      size: 1325
+  build_features:
+    cmd: python src/features/features.py data/processed/spam_clean.csv models/
+    deps:
+    - path: data/processed/spam_clean.csv
+      hash: md5
+      md5: 7d14b7d9edd7b7a3ee35269744ef9010
+      size: 443686
+    - path: src/features/features.py
+      hash: md5
+      md5: 9b370a7a95579263f9544336b99cc0d3
+      size: 1555
+    params:
+      params.yaml:
+        build_features.max_features: 3000
+        build_features.remove_stopwords: true
+    outs:
+    - path: models/
+      hash: md5
+      md5: c3e043bbac979a9cb319845508ffc8c2.dir
+      size: 573589
+      nfiles: 4
+  train_model:
+    cmd: python src/models/train_model.py models/ model/model.pkl
+    deps:
+    - path: models/X_vec.pkl
+      hash: md5
+      md5: 9318ae9c033d8df1be3cf2861b3d2676
+      size: 424051
+    - path: models/y.pkl
+      hash: md5
+      md5: 39f8e5cb8fa957430f74980c3342a448
+      size: 41577
+    - path: src/models/train_model.py
+      hash: md5
+      md5: 3b1a396e079de7a9e58582672a11671b
+      size: 1345
+    params:
+      params.yaml:
+        train_model:
+          active_model: logistic_regression
+          logistic_regression:
+            C: 1.0
+            max_iter: 1000
+          linear_svm:
+            C: 1.0
+    outs:
+    - path: model/model.pkl
+      hash: md5
+      md5: f5148ca925a0ef9185d63e0c4f461b56
+      size: 24863

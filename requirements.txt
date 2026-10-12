@@ -1,0 +1,17 @@
+# Core ML & data
+numpy
+pandas
+scikit-learn
+scipy
+
+# Pipeline & utilities
+click
+joblib
+PyYAML
+python-dotenv
+
+# DVC
+dvc
+
+# Optional (only if used)
+matplotlib
