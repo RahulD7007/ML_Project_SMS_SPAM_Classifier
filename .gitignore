@@ -1,2 +1,84 @@
+# ==========================================
+# Virtual Environments (FIXES 10,000+ FILES)
+# ==========================================
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# ==========================================
+# DVC (Data Version Control) Cache & Temp
+# ==========================================
+.dvc/cache
+.dvc/tmp
+.dvc/plots
+
+# ==========================================
+# Data & Models (Managed by DVC)
+# ==========================================
 /data
 /models
+/model
+
+# ==========================================
+# Byte-compiled / optimized / DLL files
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.pytest_cache/
+
+# DotEnv configuration
+.env
+
+# Database
+*.db
+*.rdb
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.spyproject/
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# OS Specific
+.DS_Store
+Thumbs.db
